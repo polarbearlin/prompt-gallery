@@ -8,7 +8,8 @@ let promptsData = [];
 // Load prompts data
 async function loadPrompts() {
     try {
-        const response = await fetch('data/prompts.json');
+        // Add timestamp to prevent caching
+        const response = await fetch(`data/prompts.json?v=${new Date().getTime()}`);
         promptsData = await response.json();
         renderGallery(promptsData);
         updateCount(promptsData.length);
