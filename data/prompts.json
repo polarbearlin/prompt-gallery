@@ -1,0 +1,134 @@
+[
+    {
+        "id": 1,
+        "title": "Mac mini 3×3品牌设计视觉故事板",
+        "categories": [
+            "product",
+            "minimalist",
+            "branding"
+        ],
+        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+        "prompt": "Create a 3×3 grid brand design visual storyboard for Mac mini. Each cell showcases the product from different angles with clean white background. Emphasize the compact aluminum design, port layout, and minimalist Apple aesthetic. Professional product photography style, soft studio lighting, high-end commercial look."
+    },
+    {
+        "id": 2,
+        "title": "可口可乐冰感九宫格品牌视觉大片",
+        "categories": [
+            "product",
+            "branding",
+            "food"
+        ],
+        "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=600",
+        "prompt": "Create a 3×3 grid brand visual featuring Coca-Cola bottles with ice and water droplets. Each cell shows different compositions: close-up of bubbles, bottle with condensation, ice cubes, red cap detail, vintage logo, refreshing splash. Vibrant red color scheme, summer vibes, commercial photography quality."
+    },
+    {
+        "id": 3,
+        "title": "光影烟韵复古女郎",
+        "categories": [
+            "portrait",
+            "photography",
+            "retro"
+        ],
+        "image": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600",
+        "prompt": "Cinematic portrait of an elegant woman in vintage Hollywood style. Soft smoke wisps curling around her face, dramatic chiaroscuro lighting from the side. 1940s glamour, film noir aesthetic, black and white with subtle sepia tones. Shot on medium format film, shallow depth of field, timeless beauty."
+    },
+    {
+        "id": 4,
+        "title": "手工羊毛毡女孩与猫",
+        "categories": [
+            "illustration",
+            "character",
+            "3d"
+        ],
+        "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600",
+        "prompt": "A cute handmade wool felt diorama featuring a young girl sitting with her cat. Soft pastel colors, cozy cottage interior with tiny furniture. Japanese kawaii aesthetic, needle felting craft style, warm ambient lighting. Miniature world, bokeh background, macro photography of handcrafted scene."
+    },
+    {
+        "id": 5,
+        "title": "俯拍睡莲绿裙时尚大片",
+        "categories": [
+            "fashion",
+            "portrait",
+            "nature"
+        ],
+        "image": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600",
+        "prompt": "Overhead fashion photography of a model lying on water surface surrounded by water lilies. Flowing emerald green gown spreading like lotus leaves. Dreamy ethereal mood, golden hour natural light reflecting on water. High fashion editorial for Vogue, painterly quality, Pre-Raphaelite inspiration."
+    },
+    {
+        "id": 6,
+        "title": "未来超市AR果酱选购记",
+        "categories": [
+            "sci-fi",
+            "3d",
+            "product"
+        ],
+        "image": "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600",
+        "prompt": "Futuristic supermarket scene with augmented reality shopping interface. A customer pointing at jam jars while holographic product info, nutritional data, and reviews float in the air. Sleek modern interior design, neon accent lighting, cyberpunk meets everyday life. Rendered in Unreal Engine 5, photorealistic."
+    },
+    {
+        "id": 7,
+        "title": "复古等距时代立体模型",
+        "categories": [
+            "3d",
+            "retro",
+            "illustration"
+        ],
+        "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600",
+        "prompt": "Isometric diorama of a 1950s American neighborhood. Classic cars, diners with neon signs, suburban houses with white picket fences. Nostalgic warm color palette, tilt-shift miniature effect. Low-poly stylized 3D render, soft shadows, vintage americana aesthetic."
+    },
+    {
+        "id": 8,
+        "title": "俯视角土耳其烤肉微景",
+        "categories": [
+            "food",
+            "3d",
+            "minimalist"
+        ],
+        "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600",
+        "prompt": "Top-down isometric view of a Turkish kebab restaurant scene. Detailed miniature diorama with spinning döner, grilling meats, fresh vegetables, and warm pita bread. Cozy interior with ottoman patterns. 3D clay render style, soft ambient occlusion, appetizing food photography lighting."
+    },
+    {
+        "id": 9,
+        "title": "阳光洒落慵懒金发少女",
+        "categories": [
+            "portrait",
+            "photography",
+            "fashion"
+        ],
+        "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600",
+        "prompt": "Natural light portrait of a blonde young woman in a lazy afternoon setting. Sun rays streaming through sheer curtains, creating soft diffused glow on her face. Relaxed posture, wearing casual linen shirt. Golden hour warmth, Kodak Portra 400 film look, intimate lifestyle photography."
+    },
+    {
+        "id": 10,
+        "title": "金色海岸红裙女神",
+        "categories": [
+            "fashion",
+            "portrait",
+            "landscape"
+        ],
+        "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600",
+        "prompt": "Dramatic fashion editorial of a woman in flowing red gown on golden sand beach at sunset. Wind catching the fabric creating dynamic movement. Silhouette against orange and purple sky. High-end luxury fashion campaign, cinematic wide shot, ethereal goddess energy."
+    },
+    {
+        "id": 11,
+        "title": "赛博朋克霓虹都市夜景",
+        "categories": [
+            "sci-fi",
+            "landscape",
+            "photography"
+        ],
+        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600",
+        "prompt": "Cyberpunk cityscape at night with towering skyscrapers covered in holographic advertisements and neon signs. Rain-slicked streets reflecting pink and blue lights. Flying vehicles, dense urban atmosphere. Blade Runner inspired, shot on anamorphic lens with lens flares."
+    },
+    {
+        "id": 12,
+        "title": "精致法式甜点马卡龙塔",
+        "categories": [
+            "food",
+            "product",
+            "minimalist"
+        ],
+        "image": "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600",
+        "prompt": "Elegant tower of French macarons in pastel colors: rose pink, mint green, lavender, and champagne gold. Arranged on a marble cake stand with gold trim. Soft natural window light, shallow depth of field. High-end patisserie catalog style, delicate and luxurious."
+    }
+]

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 提示词图库 | Prompt Gallery</title>
+    <meta name="description" content="精选 AI 图片提示词案例，快速复制 Prompt，探索灵感。">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">🎨</span>
+                    <span>AI 提示词图库</span>
+                </h1>
+                <a href="https://www.my199601.top" class="back-link">← 返回主站</a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索提示词..." autocomplete="off">
+                <button id="searchBtn">搜索</button>
+                <span class="prompt-count">共 <span id="totalCount">0</span> 个提示词</span>
+            </div>
+
+            <!-- Category Tags -->
+            <div class="categories" id="categories">
+                <button class="category-tag active" data-category="all">全部</button>
+                <button class="category-tag" data-category="photography">📷 摄影</button>
+                <button class="category-tag" data-category="portrait">👤 人像</button>
+                <button class="category-tag" data-category="nature">🌿 自然</button>
+                <button class="category-tag" data-category="product">📦 产品</button>
+                <button class="category-tag" data-category="3d">🎮 3D</button>
+                <button class="category-tag" data-category="food">🍔 美食</button>
+                <button class="category-tag" data-category="fashion">👗 时尚</button>
+                <button class="category-tag" data-category="illustration">🎨 插画</button>
+                <button class="category-tag" data-category="branding">💼 品牌</button>
+                <button class="category-tag" data-category="minimalist">✨ 极简</button>
+                <button class="category-tag" data-category="fantasy">🦄 奇幻</button>
+                <button class="category-tag" data-category="retro">📼 复古</button>
+                <button class="category-tag" data-category="landscape">🏔️ 风景</button>
+                <button class="category-tag" data-category="character">👾 角色</button>
+                <button class="category-tag" data-category="sci-fi">🚀 科幻</button>
+            </div>
+        </header>
+
+        <!-- Gallery Grid -->
+        <main class="gallery" id="gallery">
+            <!-- Cards will be inserted here by JavaScript -->
+        </main>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">加载中...</div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <span class="no-results-icon">🔍</span>
+            <p>没有找到匹配的提示词</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle"></h2>
+                <div class="modal-tags" id="modalTags"></div>
+                <div class="prompt-box">
+                    <div class="prompt-header">
+                        <span>📝 Prompt</span>
+                        <button class="copy-btn" id="copyBtn">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">复制</span>
+                        </button>
+                    </div>
+                    <pre class="prompt-text" id="modalPrompt"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
