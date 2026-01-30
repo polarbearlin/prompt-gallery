@@ -5,6 +5,7 @@ Parse the GitHub markdown file and extract prompts into JSON format
 import re
 import json
 import sys
+import os
 
 def parse_markdown_to_json(md_content):
     """Parse markdown content and extract prompt cases"""
@@ -82,11 +83,39 @@ def parse_markdown_to_json(md_content):
     return cases
 
 if __name__ == "__main__":
-    # Read from stdin
-    md_content = sys.stdin.read()
+    import glob
     
-    # Parse
-    cases = parse_markdown_to_json(md_content)
+    all_cases = []
+    seen_ids = set()
     
-    # Output JSON
-    print(json.dumps(cases, ensure_ascii=False, indent=2))
+    # Get all .md files in data directory
+    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    md_files = glob.glob(os.path.join(data_dir, '*.md'))
+    
+    print(f"Found {len(md_files)} markdown files to process...")
+    
+    for md_file in md_files:
+        try:
+            with open(md_file, 'r') as f:
+                content = f.read()
+                cases = parse_markdown_to_json(content)
+                
+                # Add unique cases
+                for case in cases:
+                    if case['id'] not in seen_ids:
+                        all_cases.append(case)
+                        seen_ids.add(case['id'])
+                        
+            print(f"Processed {os.path.basename(md_file)}: {len(cases)} prompts found")
+        except Exception as e:
+            print(f"Error processing {md_file}: {e}")
+            
+    # Sort by ID descending (newest first)
+    all_cases.sort(key=lambda x: x['id'], reverse=True)
+            
+    # Output to data/prompts.json
+    output_path = os.path.join(data_dir, 'prompts.json')
+    with open(output_path, 'w') as f:
+        json.dump(all_cases, f, ensure_ascii=False, indent=2)
+        
+    print(f"✅ Successfully extracted {len(all_cases)} unique prompts to {output_path}")
