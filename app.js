@@ -155,25 +155,75 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Copy functionality
+// Copy to Clipboard with fallback
+async function copyToClipboard(text, btn) {
+    try {
+        // Try modern API first
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(text);
+        } else {
+            throw new Error('Clipboard API not available');
+        }
+        showCopySuccess(btn);
+    } catch (err) {
+        // Fallback: TextArea method
+        try {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+
+            // Ensure content is selectable but not visible
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '0';
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            if (successful) {
+                showCopySuccess(btn);
+            } else {
+                showCopyError(btn);
+            }
+        } catch (fallbackErr) {
+            console.error('Copy failed:', fallbackErr);
+            showCopyError(btn);
+        }
+    }
+}
+
+function showCopySuccess(btn) {
+    const originalText = '复制';
+    const originalIcon = '📋';
+    const textSpan = btn.querySelector('.copy-text');
+    const iconSpan = btn.querySelector('.copy-icon');
+
+    textSpan.textContent = '已复制！';
+    iconSpan.textContent = '✅';
+    btn.classList.add('success');
+
+    setTimeout(() => {
+        textSpan.textContent = originalText;
+        iconSpan.textContent = originalIcon;
+        btn.classList.remove('success');
+    }, 2000);
+}
+
+function showCopyError(btn) {
+    const textSpan = btn.querySelector('.copy-text');
+    textSpan.textContent = '复制失败';
+    setTimeout(() => {
+        textSpan.textContent = '复制';
+    }, 2000);
+}
+
 document.getElementById('copyBtn').addEventListener('click', async () => {
     const promptText = document.getElementById('modalPrompt').textContent;
     const btn = document.getElementById('copyBtn');
-
-    try {
-        await navigator.clipboard.writeText(promptText);
-        btn.classList.add('copied');
-        btn.querySelector('.copy-text').textContent = '已复制!';
-        btn.querySelector('.copy-icon').textContent = '✓';
-
-        setTimeout(() => {
-            btn.classList.remove('copied');
-            btn.querySelector('.copy-text').textContent = '复制';
-            btn.querySelector('.copy-icon').textContent = '📋';
-        }, 2000);
-    } catch (err) {
-        console.error('Copy failed:', err);
-        alert('复制失败，请手动复制');
-    }
+    await copyToClipboard(promptText, btn);
 });
 
 // Back to top button
