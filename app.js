@@ -47,26 +47,54 @@ function renderGallery(prompts) {
     `).join('');
 }
 
+// Category Master Configuration
+const CATEGORIES = [
+    { id: 'all', name: '全部', emoji: '' },
+    { id: 'photography', name: '摄影', emoji: '📷' },
+    { id: 'portrait', name: '人像', emoji: '👤' },
+    { id: 'nature', name: '自然', emoji: '🌿' },
+    { id: 'landscape', name: '景观', emoji: '🏔️' },
+    { id: 'architecture', name: '建筑', emoji: '🏛️' },
+    { id: 'interior', name: '室内', emoji: '🏠' },
+    { id: '3d', name: '3D', emoji: '🧊' },
+    { id: 'illustration', name: '插画', emoji: '🎨' },
+    { id: 'character', name: '角色', emoji: '👾' },
+    { id: 'anime', name: '动漫', emoji: '🌸' },
+    { id: 'fashion', name: '时尚', emoji: '👗' },
+    { id: 'product', name: '产品', emoji: '📦' },
+    { id: 'food', name: '美食', emoji: '🍔' },
+    { id: 'logo', name: 'Logo', emoji: '🔷' },
+    { id: 'branding', name: '品牌', emoji: '💼' },
+    { id: 'typography', name: '字体', emoji: '🅰️' },
+    { id: 'poster', name: '海报', emoji: '📜' },
+    { id: 'ui', name: 'UI', emoji: '📱' },
+    { id: 'icon', name: '图标', emoji: '🏷️' },
+    { id: 'game', name: '游戏', emoji: '🎮' },
+    { id: 'sci-fi', name: '科幻', emoji: '🚀' },
+    { id: 'fantasy', name: '奇幻', emoji: '🦄' },
+    { id: 'retro', name: '复古', emoji: '📼' },
+    { id: 'minimalist', name: '极简', emoji: '✨' },
+    { id: 'neon', name: '霓虹', emoji: '🎆' },
+    { id: 'clay', name: '粘土', emoji: '🧸' },
+    { id: 'paper', name: '剪纸', emoji: '✂️' },
+    { id: 'texture', name: '材质', emoji: '🧶' },
+    { id: 'animal', name: '动物', emoji: '🐾' },
+    { id: 'vehicle', name: '车辆', emoji: '🚗' },
+];
+
+function renderCategories() {
+    const container = document.getElementById('categories');
+    container.innerHTML = CATEGORIES.map(cat => `
+        <button class="category-tag ${cat.id === 'all' ? 'active' : ''}" data-category="${cat.id}">
+            ${cat.emoji} ${cat.name}
+        </button>
+    `).join('');
+}
+
 // Get emoji for category
-function getCategoryEmoji(category) {
-    const emojis = {
-        'photography': '📷',
-        'portrait': '👤',
-        'nature': '🌿',
-        'product': '📦',
-        '3d': '🎮',
-        'food': '🍔',
-        'fashion': '👗',
-        'illustration': '🎨',
-        'branding': '💼',
-        'minimalist': '✨',
-        'fantasy': '🦄',
-        'retro': '📼',
-        'landscape': '🏔️',
-        'character': '👾',
-        'sci-fi': '🚀'
-    };
-    return emojis[category] || '🏷️';
+function getCategoryEmoji(categoryId) {
+    const cat = CATEGORIES.find(c => c.id === categoryId);
+    return cat ? cat.emoji : '🏷️';
 }
 
 // Update prompt count
@@ -102,12 +130,13 @@ function filterPrompts(searchTerm, category) {
 // Category filter
 let activeCategory = 'all';
 document.getElementById('categories').addEventListener('click', (e) => {
-    if (e.target.classList.contains('category-tag')) {
+    const btn = e.target.closest('.category-tag');
+    if (btn) {
         // Update active state
         document.querySelectorAll('.category-tag').forEach(tag => tag.classList.remove('active'));
-        e.target.classList.add('active');
+        btn.classList.add('active');
 
-        activeCategory = e.target.dataset.category;
+        activeCategory = btn.dataset.category;
         const searchTerm = document.getElementById('searchInput').value;
         filterPrompts(searchTerm, activeCategory);
     }
@@ -241,4 +270,7 @@ backToTop.addEventListener('click', () => {
 });
 
 // Initialize
-document.addEventListener('DOMContentLoaded', loadPrompts);
+document.addEventListener('DOMContentLoaded', () => {
+    renderCategories();
+    loadPrompts();
+});
