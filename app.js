@@ -82,64 +82,71 @@ const CATEGORIES = [
     { id: 'vehicle', name: '车辆', emoji: '🚗' },
 ];
 
+// Render categories with expand capability
+let isCategoriesExpanded = false;
+const INITIAL_CATEGORY_COUNT = 10;
+
 function renderCategories() {
     const container = document.getElementById('categories');
-    container.innerHTML = CATEGORIES.map(cat => `
-        <button class="category-tag ${cat.id === 'all' ? 'active' : ''}" data-category="${cat.id}">
+    const categoriesToShow = isCategoriesExpanded ? CATEGORIES : CATEGORIES.slice(0, INITIAL_CATEGORY_COUNT);
+
+    // Render tags
+    let html = categoriesToShow.map(cat => `
+        <button class="category-tag ${activeCategory === cat.id ? 'active' : ''}" data-category="${cat.id}">
             ${cat.emoji} ${cat.name}
         </button>
     `).join('');
-}
 
-// Get emoji for category
-function getCategoryEmoji(categoryId) {
-    const cat = CATEGORIES.find(c => c.id === categoryId);
-    return cat ? cat.emoji : '🏷️';
-}
-
-// Update prompt count
-function updateCount(count) {
-    document.getElementById('totalCount').textContent = count;
-}
-
-// Search functionality
-function filterPrompts(searchTerm, category) {
-    let filtered = promptsData;
-
-    // Filter by search term
-    if (searchTerm) {
-        const term = searchTerm.toLowerCase();
-        filtered = filtered.filter(p =>
-            p.title.toLowerCase().includes(term) ||
-            p.prompt.toLowerCase().includes(term) ||
-            p.categories.some(c => c.toLowerCase().includes(term))
-        );
+    // Add Expand/Collapse button if needed
+    if (CATEGORIES.length > INITIAL_CATEGORY_COUNT) {
+        html += `
+            <button class="category-tag toggle-btn" id="categoryToggle" style="background:transparent; border:1px solid var(--border); color:var(--accent);">
+                ${isCategoriesExpanded ? '🔼 收起' : '🔽 更多分类'}
+            </button>
+        `;
     }
 
-    // Filter by category
-    if (category && category !== 'all') {
-        filtered = filtered.filter(p =>
-            p.categories.includes(category)
-        );
-    }
-
-    renderGallery(filtered);
-    updateCount(filtered.length);
+    container.innerHTML = html;
 }
 
-// Category filter
-let activeCategory = 'all';
+// Category filter & Toggle
 document.getElementById('categories').addEventListener('click', (e) => {
-    const btn = e.target.closest('.category-tag');
-    if (btn) {
-        // Update active state
-        document.querySelectorAll('.category-tag').forEach(tag => tag.classList.remove('active'));
-        btn.classList.add('active');
+    // Handle toggle button
+    if (e.target.closest('#categoryToggle')) {
+        isCategoriesExpanded = !isCategoriesExpanded;
+        renderCategories();
+        return;
+    }
 
+    const btn = e.target.closest('.category-tag');
+    if (btn && !btn.classList.contains('toggle-btn')) {
+        // Update active state
         activeCategory = btn.dataset.category;
         const searchTerm = document.getElementById('searchInput').value;
         filterPrompts(searchTerm, activeCategory);
+        renderCategories(); // Re-render to update active class
     }
+});
+
+// Smart Sticky Header (Hide on scroll down)
+let lastScrollY = window.scrollY;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Threshold to prevent jitter
+    if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scroll Down -> Hide
+        header.classList.add('header-hidden');
+    } else {
+        // Scroll Up -> Show
+        header.classList.remove('header-hidden');
+    }
+
+    lastScrollY = currentScrollY;
 });
 
 // Search input
