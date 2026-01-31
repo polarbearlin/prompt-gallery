@@ -82,6 +82,12 @@ const CATEGORIES = [
     { id: 'vehicle', name: '车辆', emoji: '🚗' },
 ];
 
+// Get emoji for category
+function getCategoryEmoji(categoryId) {
+    const cat = CATEGORIES.find(c => c.id === categoryId);
+    return cat ? cat.emoji : '🏷️';
+}
+
 // Render categories with expand capability
 let isCategoriesExpanded = false;
 const INITIAL_CATEGORY_COUNT = 10;
