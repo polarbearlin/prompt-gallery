@@ -88,6 +88,39 @@ function getCategoryEmoji(categoryId) {
     return cat ? cat.emoji : '🏷️';
 }
 
+// Active category state
+let activeCategory = 'all';
+
+// Update prompt count
+function updateCount(count) {
+    document.getElementById('totalCount').textContent = count;
+}
+
+// Search functionality
+function filterPrompts(searchTerm, category) {
+    let filtered = promptsData;
+
+    // Filter by search term
+    if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        filtered = filtered.filter(p =>
+            p.title.toLowerCase().includes(term) ||
+            p.prompt.toLowerCase().includes(term) ||
+            p.categories.some(c => c.toLowerCase().includes(term))
+        );
+    }
+
+    // Filter by category
+    if (category && category !== 'all') {
+        filtered = filtered.filter(p =>
+            p.categories.includes(category)
+        );
+    }
+
+    renderGallery(filtered);
+    updateCount(filtered.length);
+}
+
 // Render categories with expand capability
 let isCategoriesExpanded = false;
 const INITIAL_CATEGORY_COUNT = 10;
