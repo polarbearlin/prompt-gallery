@@ -23,26 +23,54 @@
                 <a href="https://www.my199601.top" class="back-link">← 返回主站</a>
             </div>
 
-            <!-- Search Bar -->
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="搜索提示词..." autocomplete="off">
-                <button id="searchBtn">搜索</button>
-                <span class="prompt-count">共 <span id="totalCount">0</span> 个提示词</span>
+            <!-- Tab Navigation -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-target="gallery-view">🎨 提示词画廊</button>
+                <button class="nav-tab" data-target="wiki-view">📚 教程文档</button>
             </div>
 
-            <!-- Category Tags -->
-            <div class="categories" id="categories">
-                <!-- Categories will be rendered by JS -->
+            <!-- Search Bar (Visible only in Gallery View) -->
+            <div id="gallery-controls">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="搜索提示词..." autocomplete="off">
+                    <button id="searchBtn">搜索</button>
+                    <span class="prompt-count">共 <span id="totalCount">0</span> 个提示词</span>
+                </div>
+
+                <!-- Category Tags -->
+                <div class="categories" id="categories">
+                    <!-- Categories will be rendered by JS -->
+                </div>
             </div>
         </header>
 
-        <!-- Gallery Grid -->
-        <main class="gallery" id="gallery">
-            <!-- Cards will be inserted here by JavaScript -->
-        </main>
+        <!-- View: Gallery -->
+        <div id="gallery-view" class="view-section active">
+            <main class="gallery" id="gallery">
+                <!-- Cards will be inserted here by JavaScript -->
+            </main>
+            <!-- Loading -->
+            <div class="loading" id="loading">加载中...</div>
+        </div>
 
-        <!-- Loading -->
-        <div class="loading" id="loading">加载中...</div>
+        <!-- View: Wiki Mirror -->
+        <div id="wiki-view" class="view-section" style="display: none;">
+            <div class="wiki-container">
+                <aside class="wiki-sidebar">
+                    <div class="wiki-sidebar-header">
+                        <h2>📚 文档目录</h2>
+                    </div>
+                    <nav class="wiki-nav" id="sidebarNav"></nav>
+                </aside>
+                <main class="wiki-content">
+                    <iframe id="contentFrame" src="" frameborder="0" allowfullscreen></iframe>
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="spinner"></div>
+                        <span>加载内容中...</span>
+                    </div>
+                </main>
+            </div>
+        </div>
 
         <!-- No Results -->
         <div class="no-results" id="noResults" style="display: none;">
@@ -78,6 +106,8 @@
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop">↑</button>
 
+    <script src="wiki_data.js"></script>
+    <script src="wiki_app.js"></script>
     <script src="app.js"></script>
 </body>
 

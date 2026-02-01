@@ -47,6 +47,34 @@ function renderGallery(prompts) {
     `).join('');
 }
 
+// Tab Switching Logic
+document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Toggle active tab
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Toggle Views
+        const targetId = tab.dataset.target;
+        document.querySelectorAll('.view-section').forEach(view => {
+            view.style.display = 'none';
+            view.classList.remove('active');
+        });
+
+        const targetView = document.getElementById(targetId);
+        targetView.style.display = 'block';
+        setTimeout(() => targetView.classList.add('active'), 10);
+
+        // Toggle Search Bar (Only visible in gallery)
+        const galleryControls = document.getElementById('gallery-controls');
+        if (targetId === 'gallery-view') {
+            galleryControls.style.display = 'block';
+        } else {
+            galleryControls.style.display = 'none';
+        }
+    });
+});
+
 // Category Master Configuration
 const CATEGORIES = [
     { id: 'all', name: '全部', emoji: '' },
