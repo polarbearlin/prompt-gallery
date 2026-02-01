@@ -118,7 +118,76 @@ body {
 .wiki-nav {
     flex: 1;
     overflow-y: auto;
-    padding: 8px 0;
+    padding: 12px 8px;
+    /* Added spacing */
+}
+
+/* Base Nav Item */
+.nav-item {
+    display: block;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #475569;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+}
+
+.nav-item:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.nav-item.active {
+    background: #e0f2fe;
+    /* Lighter active blue */
+    color: #0284c7;
+    font-weight: 500;
+}
+
+/* Level 1: Section Headers */
+.nav-item.level-1 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 16px;
+    /* Separate sections */
+    margin-bottom: 6px;
+    padding-left: 12px;
+    border-left: 3px solid transparent;
+}
+
+.nav-item.level-1.active {
+    border-left-color: #0284c7;
+    background: transparent;
+    /* No bg for headers usually, or subtle */
+}
+
+/* Level 2: Sub Links */
+.nav-item.level-2 {
+    font-size: 13px;
+    color: #64748b;
+    padding-left: 24px;
+    border-left: 1px solid #e2e8f0;
+    margin-left: 12px;
+    /* Indent the block itself */
+}
+
+.nav-item.level-2:hover {
+    border-left-color: #94a3b8;
+}
+
+.nav-item.level-2.active {
+    background: #f1f5f9;
+    color: #3b82f6;
+    border-left-color: #3b82f6;
+    font-weight: 500;
 }
 
 .wiki-content {
