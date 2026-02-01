@@ -50,12 +50,19 @@ function renderGallery(prompts) {
 // Tab Switching Logic
 document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', () => {
+        const targetId = tab.dataset.target;
+
+        // Special case: Wiki tab opens external link
+        if (targetId === 'wiki-view') {
+            window.open('https://hcnrqs11o4jt.feishu.cn/wiki/R01DwMvtKiMGZ3kyJ1Qc43Bcn5c', '_blank');
+            return; // Don't switch views
+        }
+
         // Toggle active tab
         document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
         // Toggle Views
-        const targetId = tab.dataset.target;
         document.querySelectorAll('.view-section').forEach(view => {
             view.style.display = 'none';
             view.classList.remove('active');
