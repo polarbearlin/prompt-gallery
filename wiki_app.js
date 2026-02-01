@@ -44,19 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading();
 
         // Check if we are just changing the hash on the same page
-        const currentSrc = iframe.src.split('#')[0];
-        const newSrc = url.split('#')[0];
+        const currentSrc = iframe.src.split('#')[0].split('?')[0];
+        const newSrc = url.split('#')[0].split('?')[0];
 
         if (currentSrc === newSrc && url.includes('#')) {
-            // Force reload to trigger hash jump or just update src
-            iframe.src = url;
-            iframe.contentWindow?.location.reload();
+            // Force reload by adding/updating a timestamp query param
+            // Insert param before the hash
+            const [baseUrl, hash] = url.split('#');
+            // Check if base has query params already
+            const separator = baseUrl.includes('?') ? '&' : '?';
+            const forcedUrl = `${baseUrl}${separator}v=${Date.now()}#${hash}`;
+
+            iframe.src = forcedUrl;
         } else {
             iframe.src = url;
         }
 
         // Hide loading after a short delay (iframe load event is tricky cross-origin)
         iframe.onload = hideLoading;
+        setTimeout(hideLoading, 1500);
         setTimeout(hideLoading, 1500);
     }
 
