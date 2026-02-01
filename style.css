@@ -207,6 +207,15 @@ body {
     margin-left: -300px;
     /* Hide internal sidebar */
     background: white;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    opacity: 1;
+    filter: blur(0);
+}
+
+#contentFrame.loading {
+    opacity: 0.6;
+    filter: blur(4px);
+    pointer-events: none;
 }
 
 /* Loading Overlay */

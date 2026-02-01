@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show loading state
         showLoading();
+        iframe.classList.add('loading');
 
         // Check if we are just changing the hash on the same page
         const currentSrc = iframe.src.split('#')[0].split('?')[0];
@@ -61,9 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Hide loading after a short delay (iframe load event is tricky cross-origin)
-        iframe.onload = hideLoading;
-        setTimeout(hideLoading, 1500);
-        setTimeout(hideLoading, 1500);
+        iframe.onload = hideLoadingState;
+        setTimeout(hideLoadingState, 1500);
     }
 
     function showLoading() {
