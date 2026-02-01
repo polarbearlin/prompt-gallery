@@ -199,13 +199,14 @@ body {
 }
 
 /* Cropped Iframe */
+/* Cropped Iframe */
 #contentFrame {
-    width: calc(100% + 300px);
+    width: 100%;
     height: 100%;
     border: none;
     display: block;
-    margin-left: -300px;
-    /* Hide internal sidebar */
+    margin-left: 0;
+    /* Reset internal sidebar crop */
     background: white;
     transition: opacity 0.3s ease, filter 0.3s ease;
     opacity: 1;
@@ -445,6 +446,11 @@ body {
     font-size: 48px;
     display: block;
     margin-bottom: 16px;
+}
+
+/* Hide the Gallery Sidebar in Wiki Mode */
+.wiki-sidebar {
+    display: none !important;
 }
 
 /* Modal */
